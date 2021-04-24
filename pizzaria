@@ -1,0 +1,51 @@
+CREATE DATABASE db_pizzaria_legal;
+
+use db_pizzaria_legal;
+create table tb_categoria(
+ id 		bigint auto_increment,
+tipo	varchar (255) not null, 	
+valor 	decimal (7,2) not null,
+tempo 	time,
+primary key (id)
+
+);
+
+
+create table tb_pizza(
+id 		bigint auto_increment,
+   sabores varchar (255) not null,
+   bordas	varchar (255) not null,
+   tamanho char (1),
+	categoria_id bigint,
+primary key (id),
+foreign key (categoria_id) references tb_categoria(id)
+);
+
+
+
+
+
+
+
+insert into tb_categoria (tipo, valor, tempo) values (" Palmito 1", 69.90, 2500);
+insert into tb_categoria (tipo, valor, tempo) values ("Frios", 28.90, 2400);
+insert into tb_categoria (tipo, valor, tempo) values ("Batatas assadas", 53.99, 2600);
+insert into tb_categoria(tipo, valor, tempo) values ("Tofu", 71.90, 2700);
+insert into tb_categoria(tipo, valor, tempo) values ("Queijo quente", 49.90, 4000);
+insert into tb_pizza (sabores, bordas, tamanho, categoria_id) values ("palmito e catupiry", "s/borda", "G", 1);
+insert into tb_pizza (sabores, bordas, tamanho, categoria_id) values ("Palmito", "com borda", "M", 2);
+insert into tb_pizza (sabores, bordas, tamanho, categoria_id) values ("Banana", "sem borda", "P", 1);
+insert into tb_pizza (sabores, bordas, tamanho, categoria_id) values  ("Tomate seco", "com borda", "P", 2);
+insert into tb_pizza (sabores, bordas, tamanho, categoria_id) values ("Brocolis com mussarela", "com borda", "M", 4);
+insert into tb_pizza (sabores, bordas, tamanho, categoria_id) values ("Chocolate", "com borda", "M", 2);
+insert into tb_pizza (sabores, bordas, tamanho, categoria_id) values ("Caramelo", "com borda", "P", 1);
+insert into tb_pizza (sabores, bordas, tamanho, categoria_id) values ("Vegetariana", "sem borda", "M", 3);
+
+
+select * from tb_categoria;
+select * from tb_pizza;
+select * from tb_categoria  where valor > 50;
+select * from tb_categoria where valor > 29 and valor < 60;
+select * from tb_pizza where sabores like "%c%";
+select * from tb_categoria inner join tb_pizza on tb_categoria.id = tb_pizza.categoria_id;
+select * from tb_pizza where categoria_id = 2;
